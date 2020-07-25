@@ -140,8 +140,9 @@ static int32_t tfm_core_set_secure_exception_priorities(void)
 int main(void)
 {
     /* set Main Stack Pointer limit */
-    tfm_arch_set_msplim((uint32_t)&REGION_NAME(Image$$, ARM_LIB_STACK_MSP,
-                                               $$ZI$$Base));
+    tfm_arch_init_secure_msp((uint32_t)&REGION_NAME(Image$$,
+                                                    ARM_LIB_STACK_MSP,
+                                                    $$ZI$$Base));
 
     if (tfm_core_init() != TFM_SUCCESS) {
         tfm_core_panic();
