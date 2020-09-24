@@ -119,6 +119,8 @@ extern "C" {
 #define IPC_CLIENT_TEST_APP_ACCESS_PSA_MEM_VERSION                 (1U)
 #define IPC_CLIENT_TEST_MEM_CHECK_SID                              (0x0000F064U)
 #define IPC_CLIENT_TEST_MEM_CHECK_VERSION                          (1U)
+#define IPC_CLIENT_TEST_RETRIEVE_APP_MEM_SID                       (0x0000F065U)
+#define IPC_CLIENT_TEST_RETRIEVE_APP_MEM_VERSION                   (1U)
 
 /******** TFM_IRQ_TEST_1 ********/
 #define SPM_CORE_IRQ_TEST_1_PREPARE_TEST_SCENARIO_SID              (0x0000F0A0U)

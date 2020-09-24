@@ -393,6 +393,7 @@ static int32_t dependencies_TFM_SP_IPC_CLIENT_TEST[] =
     IPC_SERVICE_TEST_PSA_ACCESS_APP_MEM_SID,
     IPC_SERVICE_TEST_BASIC_SID,
     IPC_SERVICE_TEST_APP_ACCESS_PSA_MEM_SID,
+    TFM_SECURE_CLIENT_2_SID,
 };
 #endif /* TFM_PARTITION_TEST_CORE_IPC */
 
@@ -566,7 +567,7 @@ const struct spm_partition_static_data_t static_data_list[] =
                               ,
         .partition_priority   = TFM_PRIORITY(NORMAL),
         .partition_init       = ipc_client_test_main,
-        .dependencies_num     = 4,
+        .dependencies_num     = 5,
         .p_dependencies       = dependencies_TFM_SP_IPC_CLIENT_TEST,
     },
 #endif /* TFM_PARTITION_TEST_CORE_IPC */

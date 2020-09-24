@@ -452,6 +452,15 @@ const struct tfm_spm_service_db_t service_db[] =
         .version = 1,
         .version_policy = TFM_VERSION_POLICY_STRICT
     },
+    {
+        .name = "IPC_CLIENT_TEST_RETRIEVE_APP_MEM",
+        .partition_id = TFM_SP_IPC_CLIENT_TEST,
+        .signal = IPC_CLIENT_TEST_RETRIEVE_APP_MEM_SIGNAL,
+        .sid = 0x0000F065,
+        .non_secure_client = true,
+        .version = 1,
+        .version_policy = TFM_VERSION_POLICY_STRICT
+    },
 #endif /* TFM_PARTITION_TEST_CORE_IPC */
 
 #ifdef TFM_ENABLE_IRQ_TEST
@@ -775,6 +784,12 @@ struct tfm_spm_service_t service[] =
 
 #ifdef TFM_PARTITION_TEST_CORE_IPC
     /******** TFM_SP_IPC_CLIENT_TEST ********/
+    {
+        .service_db = NULL,
+        .partition = NULL,
+        .handle_list = {0},
+        .list = {0},
+    },
     {
         .service_db = NULL,
         .partition = NULL,
