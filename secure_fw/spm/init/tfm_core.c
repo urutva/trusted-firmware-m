@@ -144,6 +144,11 @@ int main(void)
                                                     ARM_LIB_STACK_MSP,
                                                     $$ZI$$Base));
 
+#ifndef TFM_PSA_API
+    /* Seal the PSP stacks viz ARM_LIB_STACK and TFM_SECURE_STACK */
+    tfm_spm_seal_psp_stacks();
+#endif
+
     if (tfm_core_init() != TFM_SUCCESS) {
         tfm_core_panic();
     }

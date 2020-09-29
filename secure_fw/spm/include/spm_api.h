@@ -470,6 +470,11 @@ void tfm_spm_psa_wait(uint32_t *svc_args);
  * \brief Handle request to record IRQ processed
  */
 void tfm_spm_psa_eoi(uint32_t *svc_args);
+
+/**
+ * \brief Function to seal the PSP stacks for Function mode.
+ */
+void tfm_spm_seal_psp_stacks(void);
 #endif /* !defined(TFM_PSA_API) */
 
 #ifdef TFM_PSA_API
