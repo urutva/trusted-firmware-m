@@ -137,8 +137,10 @@ enum tfm_hal_status_t tfm_hal_memory_has_access(const void *base,
     switch (attr & TFM_HAL_ACCESS_PRIVILEGE_MSK) {
     case TFM_HAL_ACCESS_PRIVILEGED:
         privilege_mode = TFM_PARTITION_PRIVILEGED_MODE;
+        break;
     case TFM_HAL_ACCESS_UNPRIVILEGED:
         privilege_mode = TFM_PARTITION_UNPRIVILEGED_MODE;
+        break;
     default:
         return TFM_HAL_ERROR_INVALID_INPUT;
     }
