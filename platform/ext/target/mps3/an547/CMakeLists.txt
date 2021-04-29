@@ -17,9 +17,6 @@ target_include_directories(platform_region_defs
 
 #========================= Platform common defs ===============================#
 
-if (${CMAKE_C_COMPILER_ID} STREQUAL GNU)
-    message(FATAL_ERROR "GCC is currently not supported on the mps3/an547 because TFM build system does not support the Coretex-M55 with GNUARM")
-endif()
 
 if (${CMAKE_C_COMPILER_ID} STREQUAL IAR)
     message(FATAL_ERROR "IAR is currently not supported on the mps3/an547 due to a lack of scatter files")
@@ -35,18 +32,22 @@ endif()
 target_sources(tfm_s
     PRIVATE
     $<$<C_COMPILER_ID:ARMClang>:${CMAKE_CURRENT_SOURCE_DIR}/device/source/startup_an547_s.c>
+    $<$<C_COMPILER_ID:GNU>:${CMAKE_CURRENT_SOURCE_DIR}/device/source/startup_an547_s.c>
 )
 target_add_scatter_file(tfm_s
     $<$<C_COMPILER_ID:ARMClang>:${CMAKE_SOURCE_DIR}/platform/ext/common/armclang/tfm_common_s.sct>
+    $<$<C_COMPILER_ID:GNU>:${CMAKE_SOURCE_DIR}/platform/ext/common/gcc/tfm_common_s.ld>
 )
 
 if(NS)
     target_sources(tfm_ns
         PRIVATE
             $<$<C_COMPILER_ID:ARMClang>:${CMAKE_CURRENT_SOURCE_DIR}/device/source/startup_an547_ns.c>
+            $<$<C_COMPILER_ID:GNU>:${CMAKE_CURRENT_SOURCE_DIR}/device/source/startup_an547_ns.c>
     )
     target_add_scatter_file(tfm_ns
         $<$<C_COMPILER_ID:ARMClang>:${CMAKE_CURRENT_SOURCE_DIR}/device/source/armclang/an547_ns.sct>
+	    $<$<C_COMPILER_ID:GNU>:${CMAKE_CURRENT_SOURCE_DIR}/device/source/gcc/an547_ns.ld>
     )
     target_link_libraries(CMSIS_5_tfm_ns
         INTERFACE
@@ -58,9 +59,11 @@ if(BL2)
     target_sources(bl2
         PRIVATE
             $<$<C_COMPILER_ID:ARMClang>:${CMAKE_CURRENT_SOURCE_DIR}/device/source/startup_an547_bl2.c>
+            $<$<C_COMPILER_ID:GNU>:${CMAKE_CURRENT_SOURCE_DIR}/device/source/startup_an547_bl2.c>
     )
     target_add_scatter_file(bl2
             $<$<C_COMPILER_ID:ARMClang>:${CMAKE_CURRENT_SOURCE_DIR}/device/source/armclang/an547_bl2.sct>
+	        $<$<C_COMPILER_ID:GNU>:${CMAKE_CURRENT_SOURCE_DIR}/device/source/gcc/an547_bl2.ld>
     )
 endif()
 
